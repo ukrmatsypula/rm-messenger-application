@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import vContactList from '@/components/contacts/v-contact-list'
+import vContactUserInfo from '@/components/contacts/v-contact-user-info'
+
 Vue.use(Router)
 
 let router = new Router({
@@ -8,6 +11,13 @@ let router = new Router({
     {
       path: '/',
       name: 'contacts',
+      component: vContactList,
+    },
+
+    {
+      path: '/contact',
+      name: 'contact',
+      component: vContactUserInfo,
     },
   ],
 })
