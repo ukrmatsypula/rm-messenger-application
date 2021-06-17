@@ -2,7 +2,7 @@
   <div class="v-header">
     <div class="v-header__back">
       <i class="material-icons">keyboard_arrow_left</i>
-      <span>Back</span>
+      <span @click="goBack">Back</span>
     </div>
     <div class="v-header__user-info">
       <span>Tom</span>
@@ -14,6 +14,11 @@
 <script>
 export default {
   name: 'v-header',
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
+  },
 }
 </script>
 
