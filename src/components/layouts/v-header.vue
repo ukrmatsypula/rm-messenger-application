@@ -5,15 +5,20 @@
       <span @click="goBack">Back</span>
     </div>
     <div class="v-header__user-info">
-      <span>Tom</span>
+      <span>{{ currentUserChat }}</span>
     </div>
     <div class="right-side"></div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'v-header',
+  computed: {
+    ...mapState(['currentUserChat']),
+  },
   methods: {
     goBack() {
       this.$router.go(-1)

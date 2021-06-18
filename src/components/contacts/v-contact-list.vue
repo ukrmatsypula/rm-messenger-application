@@ -22,9 +22,10 @@ export default {
     ...mapState(['contacts']),
   },
   methods: {
-    ...mapActions(['FETCH_CONTACTS']),
+    ...mapActions(['FETCH_CONTACTS', 'SET_USER_TO_HEADER']),
     toContactInfo(contact) {
       this.$router.push({ name: 'contact', query: { id: contact.id } })
+      this.SET_USER_TO_HEADER(contact.name)
     },
   },
   mounted() {
