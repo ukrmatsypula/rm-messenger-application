@@ -1,10 +1,10 @@
 <template>
   <div class="v-header">
-    <div class="v-header__back">
+    <div class="v-header__back" v-if="!isCoreRoute" @click="goBack">
       <i class="material-icons">keyboard_arrow_left</i>
-      <span @click="goBack">Back</span>
+      <span>Back</span>
     </div>
-    <div class="v-header__user-info">
+    <div class="v-header__user-info" v-if="!isCoreRoute">
       <span>{{ currentUserChat }}</span>
     </div>
     <div class="right-side"></div>
@@ -18,6 +18,9 @@ export default {
   name: 'v-header',
   computed: {
     ...mapState(['currentUserChat']),
+    isCoreRoute() {
+      return this.$route.path === '/'
+    },
   },
   methods: {
     goBack() {
