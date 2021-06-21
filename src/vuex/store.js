@@ -8,6 +8,7 @@ let store = new Vuex.Store({
   state: {
     contacts: [],
     currentUserChat: '',
+    chats: [],
   },
   getters: {},
   mutations: {
@@ -21,6 +22,9 @@ let store = new Vuex.Store({
         state.currentUserChat = ''
       }
     },
+    SET_CHATS_TO_STORE(store, chats) {
+      store.chats = chats
+    },
   },
   actions: {
     async FETCH_CONTACTS({ commit }) {
@@ -29,6 +33,11 @@ let store = new Vuex.Store({
         .then(contacts => {
           commit('SET_CONTACTS_TO_STORE', contacts.data)
         })
+    },
+    async FETCH_CHATS({ commit }) {
+      return await axios.get('http://localhost:3000/chats').then(chats => {
+        commit('SET_CHATS_TO_STORE', chats.data)
+      })
     },
     SET_USER_TO_HEADER({ commit }, user) {
       commit('SET_USER_TO_HEAD', user)
