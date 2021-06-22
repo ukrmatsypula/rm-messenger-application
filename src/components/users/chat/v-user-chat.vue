@@ -9,7 +9,7 @@
       <input
         class="v-user-chat__textfield"
         type="text"
-        v-model="textValue"
+        v-model.trim="textValue"
         @keypress.enter="sendMessage(textValue)"
       />
       <i class="material-icons" @click="sendMessage(textValue)">send</i>
@@ -19,6 +19,7 @@
 
 <script>
 import vMessage from '@/components/users/chat/v-message'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'v-user-chat',
@@ -39,10 +40,11 @@ export default {
     textValue: '',
   }),
   methods: {
+    ...mapActions(['SET_MESSAGE_TO_CHAT']),
     sendMessage(message) {
       let user = { ...this.user }
       let chat = {
-        id: this.messages.length + 1,
+        id: new Date().getTime() ,
         time: new Date().toLocaleTimeString('en-US', {
           hour12: false,
           hour: 'numeric',
@@ -52,7 +54,15 @@ export default {
         type: 'own',
       }
 
-      user.chat.push(chat)
+      if (Object.keys(chat.text).length) {
+        user.chat.push(chat)
+
+        this.SET_MESSAGE_TO_CHAT({ userId: user.id, chat: user }).then(() => {
+          this.textValue = ''
+        })
+      } else {
+        alert('Не могу отправить пустое сообщение')
+      }
     },
   },
 }
