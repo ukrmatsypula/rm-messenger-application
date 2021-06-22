@@ -24,7 +24,10 @@ export default {
   },
   methods: {
     toUserChat() {
-      this.$router.push({ name: 'chat' })
+      this.$router.push({
+        name: 'chat',
+        params: { messages: this.user_data.chat, user: this.user_data },
+      })
     },
   },
 }

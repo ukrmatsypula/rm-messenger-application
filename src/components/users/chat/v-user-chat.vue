@@ -1,6 +1,10 @@
 <template>
   <div class="v-user-chat">
-    <v-message />
+    <v-message
+      v-for="message in messages"
+      :key="message.id"
+      :message="message"
+    />
     <div class="input__field">
       <input
         class="v-user-chat__textfield"

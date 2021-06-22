@@ -32,6 +32,7 @@ let router = new Router({
       path: '/chat',
       name: 'chat',
       component: vUserChat,
+      props: true,
     },
   ],
 })
