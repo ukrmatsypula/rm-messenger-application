@@ -40,7 +40,19 @@ export default {
   }),
   methods: {
     sendMessage(message) {
-      console.log(message)
+      let user = { ...this.user }
+      let chat = {
+        id: this.messages.length + 1,
+        time: new Date().toLocaleTimeString('en-US', {
+          hour12: false,
+          hour: 'numeric',
+          minute: 'numeric',
+        }),
+        text: this.textValue,
+        type: 'own',
+      }
+
+      user.chat.push(chat)
     },
   },
 }
