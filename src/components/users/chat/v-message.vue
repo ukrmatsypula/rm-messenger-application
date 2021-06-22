@@ -1,5 +1,5 @@
 <template>
-  <div class="v-message"></div>
+  <div class="v-message">adas</div>
 </template>
 
 <script>
